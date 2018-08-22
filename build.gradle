@@ -14,10 +14,31 @@ ext.julToSlf4jVersion = '1.7.25'
 
 apply plugin: 'java-library'
 apply plugin: 'application'
+apply plugin: 'org.jetbrains.kotlin.jvm'
+
 mainClassName = "com.loggly.frameworks.java.benchmark.Benchmark"
 
 repositories {
     jcenter()
+	mavenCentral()
+	maven { url = "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+buildscript {
+	ext.kotlin_version = '1.2.61'
+
+	repositories {
+		jcenter()
+		mavenCentral()
+		maven {
+			url 'https://maven.google.com/'
+			name 'Google'
+		}
+	}
+
+	dependencies {
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+	}
 }
 
 dependencies {
@@ -37,6 +58,19 @@ dependencies {
   	
   	// Logback
   	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+
+	compile 'com.ealva:ealvalog:0.02.00-SNAPSHOT'
+	compile 'com.ealva:ealvalog-core:0.02.00-SNAPSHOT'
+	compile 'com.ealva:ealvalog-jdk:0.02.00-SNAPSHOT'
+	compile 'com.ealva:ealvalog-java:0.02.00-SNAPSHOT'
+}
+
+compileKotlin {
+	kotlinOptions {
+		jvmTarget = "1.6"
+		apiVersion = "1.2"
+		languageVersion = "1.2"
+	}
 }
 
 run {

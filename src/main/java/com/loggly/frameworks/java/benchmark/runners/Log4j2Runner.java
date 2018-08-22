@@ -9,7 +9,7 @@ public class Log4j2Runner extends BaseRunner {
 	 	 
 	 public void run(int iteration, int numRuns) {
 		 for (int run = 1; run <= numRuns; run++) {
-			 logger.info(String.format("Iteration %1$s, run %2$s", iteration, run));
+			 logger.info("Iteration {}, run {}", iteration, run);
 		 }
 	 }
 

@@ -1,5 +1,6 @@
 package com.loggly.frameworks.java.benchmark.runners;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import java.io.FileInputStream;
@@ -12,7 +13,8 @@ public class JUtilRunner extends BaseRunner {
 	@Override
 	public void run(int iteration, int numRuns) {
 		for (int run = 1; run <= numRuns; run++) {
-			logger.info(String.format("Iteration %1$s, run %2$s", iteration, run));
+			logger.log(Level.INFO, "Iteration {0}, run {1}", new Object[] {iteration, run});
+//			logger.info(String.format("Iteration %1$s, run %2$s", iteration, run));
 		}
 	}
 	
