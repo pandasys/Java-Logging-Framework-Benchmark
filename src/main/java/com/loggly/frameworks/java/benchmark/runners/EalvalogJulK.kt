@@ -55,8 +55,3 @@ class EalvalogJulK : BaseRunner() {
     }
   }
 }
-/*
-2018-08-19 01:02:53.243 INFO [main] com.loggly.frameworks.java.benchmark.runners.EalvalogJul - Iteration 0, run 14199
-2018-08-18 23:51:14,112 INFO [com.loggly.frameworks.java.benchmark.runners.Log4j2Runner] Iteration 0, run 78211
-
- */

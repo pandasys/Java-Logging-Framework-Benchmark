@@ -59,10 +59,11 @@ dependencies {
   	// Logback
   	compile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
 
-	compile 'com.ealva:ealvalog:0.02.00-SNAPSHOT'
-	compile 'com.ealva:ealvalog-core:0.02.00-SNAPSHOT'
-	compile 'com.ealva:ealvalog-jdk:0.02.00-SNAPSHOT'
-	compile 'com.ealva:ealvalog-java:0.02.00-SNAPSHOT'
+	compile 'com.ealva:ealvalog:0.02.01-SNAPSHOT'
+	compile 'com.ealva:ealvalog-core:0.02.01-SNAPSHOT'
+	compile 'com.ealva:ealvalog-jdk:0.02.01-SNAPSHOT'
+	compile 'com.ealva:ealvalog-java:0.02.01-SNAPSHOT'
+	compile 'com.ealva:ealvalog-log4j:0.02.01-SNAPSHOT'
 }
 
 compileKotlin {

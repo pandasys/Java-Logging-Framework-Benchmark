@@ -5,6 +5,7 @@ import java.util.Date;
 import com.loggly.frameworks.java.benchmark.runners.BaseRunner;
 import com.loggly.frameworks.java.benchmark.runners.EalvalogJul;
 import com.loggly.frameworks.java.benchmark.runners.EalvalogJulK;
+import com.loggly.frameworks.java.benchmark.runners.EalvalogLog4j;
 import com.loggly.frameworks.java.benchmark.runners.JUtilRunner;
 import com.loggly.frameworks.java.benchmark.runners.Log4j2Runner;
 import com.loggly.frameworks.java.benchmark.runners.LogbackRunner;
@@ -77,7 +78,11 @@ public class Benchmark {
 			configFile += String.format("/logback-%s.xml", output);
 			LogbackRunner.setConfigurationFile(configFile);
 			runner = new LogbackRunner();
-		} else if (frameworkName.contains("ealvalogk")) {
+		} else if (frameworkName.equals("ealvalog4j")) {
+			configFile += String.format("/ealvalog4j-%s.xml", output);
+			EalvalogLog4j.Companion.setConfigurationFile(configFile);
+			runner = new EalvalogLog4j();
+		} else if (frameworkName.equals("ealvalogk")) {
 			configFile += "/ealvalogk.log";
 			EalvalogJulK.Companion.setConfigurationFile(configFile);
 			runner = new EalvalogJulK();
