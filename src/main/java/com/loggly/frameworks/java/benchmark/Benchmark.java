@@ -41,7 +41,7 @@ public class Benchmark {
 		runTest(runner, numIterations, runsPerIteration);
 	}
 
-	public static BaseRunner initializeRunner(String framework, String output, boolean sync) {
+	private static BaseRunner initializeRunner(String framework, String output, boolean sync) {
 		BaseRunner runner;
 		String configFile = System.getProperty("user.dir") + "/build/resources/main";
 		// Use async loggers (Log4j2 only)
@@ -70,40 +70,47 @@ public class Benchmark {
 			}
 		}
 
-		if (frameworkName.contains("log4j2")) {
-			configFile += String.format("/log4j2-%s.xml", output);
-			Log4j2Runner.setConfigurationFile(configFile);
-			runner = new Log4j2Runner();
-		} else if (frameworkName.contains("logback")) {
-			configFile += String.format("/logback-%s.xml", output);
-			LogbackRunner.setConfigurationFile(configFile);
-			runner = new LogbackRunner();
-		} else if (frameworkName.equals("ealvalog4j")) {
-			configFile += String.format("/ealvalog4j-%s.xml", output);
-			EalvalogLog4j.Companion.setConfigurationFile(configFile);
-			runner = new EalvalogLog4j();
-		} else if (frameworkName.equals("ealvalogk")) {
-			configFile += "/ealvalogk.log";
-			EalvalogJulK.Companion.setConfigurationFile(configFile);
-			runner = new EalvalogJulK();
-		} else if (frameworkName.contains("ealvalog")) {
-			configFile += "/ealvalog.log";
-			EalvalogJul.setConfigurationFile(configFile);
-			runner = new EalvalogJul();
-	  } else if (frameworkName.contains("jul")) {	// Assume java.util.logging
-			configFile += String.format("/java.util.logging-%2$s.properties", framework, output);
-			JUtilRunner.setConfigurationFile(configFile);
-			runner = new JUtilRunner();
-		} else {
-			System.out.println("Don't recognize " + frameworkName);
-			throw new IllegalArgumentException(frameworkName);
+		switch (frameworkName) {
+			case "log4j2":
+				configFile += String.format("/log4j2-%s.xml", output);
+				Log4j2Runner.setConfigurationFile(configFile);
+				runner = new Log4j2Runner();
+				break;
+			case "logback":
+				configFile += String.format("/logback-%s.xml", output);
+				LogbackRunner.setConfigurationFile(configFile);
+				runner = new LogbackRunner();
+				break;
+			case "ealvalog4j":
+				configFile += String.format("/ealvalog4j-%s.xml", output);
+				EalvalogLog4j.Companion.setConfigurationFile(configFile);
+				runner = new EalvalogLog4j();
+				break;
+			case "ealvalogk":
+				configFile += "/ealvalogk.log";
+				EalvalogJulK.Companion.setConfigurationFile(configFile);
+				runner = new EalvalogJulK();
+				break;
+			case "ealvalog":
+				configFile += "/ealvalog.log";
+				EalvalogJul.setConfigurationFile(configFile);
+				runner = new EalvalogJul();
+				break;
+			case "jul":  // Assume java.util.logging
+				configFile += String.format("/java.util.logging-%2$s.properties", framework, output);
+				JUtilRunner.setConfigurationFile(configFile);
+				runner = new JUtilRunner();
+				break;
+			default:
+				System.out.println("Don't recognize " + frameworkName);
+				throw new IllegalArgumentException(frameworkName);
 		}
 
 		System.out.println(String.format("Configured framework using file: %s", configFile));
 		return runner;
 	}
 
-	public static void runTest(BaseRunner runner, int numIterations, int runsPerIteration) {
+	private static void runTest(BaseRunner runner, int numIterations, int runsPerIteration) {
 		Date start, end;
 
 		// Start background stress test

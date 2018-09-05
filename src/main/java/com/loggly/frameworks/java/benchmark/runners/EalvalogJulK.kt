@@ -5,12 +5,10 @@ import com.ealva.ealvalog.Loggers
 import com.ealva.ealvalog.core.ExtRecordFormatter
 import com.ealva.ealvalog.filter.AlwaysAcceptFilter
 import com.ealva.ealvalog.i
-import com.ealva.ealvalog.invoke
 import com.ealva.ealvalog.java.JLogger
 import com.ealva.ealvalog.java.JLoggers
 import com.ealva.ealvalog.jul.FriendlyFileHandler
 import com.ealva.ealvalog.jul.JdkLoggerFactory
-
 import java.io.File
 import java.io.IOException
 import java.util.logging.Handler
@@ -23,13 +21,13 @@ class EalvalogJulK : BaseRunner() {
 
   override fun run(iteration: Int, numRuns: Int) {
     for (run in 1..numRuns) {
-      logger.i { it("Iteration %s, run %d", iteration, run) }
+      logger.i { it.log("Iteration %s, run %d", iteration, run) }
     }
   }
 
   companion object {
 
-    fun setConfigurationFile(configFile: String) {
+    fun setConfigurationFile(@Suppress("UNUSED_PARAMETER") configFile: String) {
       Loggers.setFactory(JdkLoggerFactory)
       val rootLogger = JdkLoggerFactory.root
       rootLogger.logLevel = LogLevel.INFO
