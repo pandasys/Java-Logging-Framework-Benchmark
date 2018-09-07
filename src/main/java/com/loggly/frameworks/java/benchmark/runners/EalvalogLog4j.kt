@@ -19,11 +19,11 @@ class EalvalogLog4j : BaseRunner() {
     for (run in 1..numRuns) {
       logger.e { it("Iteration {}, run {}", iteration, run) }
 
-// The format version is approx 12.5% SLOWER than the invoke/log version on the test machine
+// The format version is approx 12% SLOWER than the invoke/log version on the test machine
 //      logger.e { it.format("Iteration %d, run %d", iteration, run) }  // slowest version
 //
-// The append version is approx 3.5% FASTER than the invoke/log version on the test machine
-//      logger.e {  version
+// The append version is approx 3% FASTER than the invoke/log version on the test machine
+//      logger.e {
 //        it.append("Iteration ") // fastest
 //          .append(iteration)
 //          .append(", run ")
