@@ -4,11 +4,11 @@ import com.ealva.ealvalog.Logger
 import com.ealva.ealvalog.Loggers
 import com.ealva.ealvalog.e
 import com.ealva.ealvalog.invoke
-import com.ealva.ealvalog.lazyLogger
 import com.ealva.ealvalog.log4j.Log4jLoggerFactory
+import com.ealva.ealvalog.logger
 import org.apache.logging.log4j.core.config.Configurator
 
-private val logger: Logger by lazyLogger(EalvalogLog4j::class)
+private val logger: Logger = logger(EalvalogLog4j::class)
 
 /**
  * Created by Eric A. Snell on 8/17/18.
